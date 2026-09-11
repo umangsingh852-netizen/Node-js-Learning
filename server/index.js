@@ -12,7 +12,7 @@ const myServer = http.createServer((req, res) => {
             case "/": res.end("HomePage");
             break;
 
-            case "/about": 
+            case "/about":  
                 const username = myUrl.query.username;
                 res.end(`Hi ${username}`);
                 break;

@@ -1,10 +1,9 @@
 const express = require("express");
 const users = require("./MOCK_DATA.json");
 const fs = require("fs");
-const { stringify } = require("querystring");
 
 const app = express();
-const PORT = 8000;
+const PORT = 8001;
 
 //Middleware
 app.use(express.urlencoded({extended: false}));
@@ -45,10 +44,10 @@ app.route("/api/users/:id")
 
 app.post("/api/users", (req, res) => {
     const body = req.body;
-    users.push({...body, id: users.length + 1 });
+    users.push({...body, id: users.length }); 
     fs.writeFile('./MOCK_DATA.json', JSON.stringify(users), (err, data) => {
-        return res.json({ status: "pending"});
-    })
+        return res.json({ status: "Success", id: users.length + 1});
+    });
 });
 
 app.listen(PORT, () => {
